@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin Glass</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
+    <!-- UI Overlay for stats or controls -->
+    <div id="ui-layer">
+        <h1>Relaxation Time of Magnetic Nanoparticles</h1>
+        <br>
+        <h3>Simulation Status</h3>
+        <p>Particles: <span id="particlesLabel">0</span></p>
+        <p>q: <span id="qLabel">0</span></p>
+        <p>Tcutoff:<span id="TcutoffLabel">0</span></p>
+        <p>tau:<span id="tauLabel">0</span></p>
+        <p>Tstar: <span id="TstarLabel">0</span></p>
+        <p>Equation being used:</p>
+        <button id="btnNewElectron">Add Electron</button>
+    </div>
+
+    <canvas id="simCanvas"></canvas>
+
+    <script src="script.js"></script>
+    <script src="class/ball.js"></script>
+    <script src="class/vector2D.js"></script>
+</body>
+</html>

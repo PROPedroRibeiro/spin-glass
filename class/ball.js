@@ -1,5 +1,5 @@
 class Ball{
-    constructor(name, x, y, r, m=1, q=0, T=0, spin=0){
+    constructor(name, x, y, r, m=1, q=0, T=0, spinAngle=0){
         this.name = name;
         this.pos = new Vector2D(x,y);
         this.r = r;
@@ -12,7 +12,7 @@ class Ball{
         }
         this.q = q;
         this.T = T;
-        this.spin = spin;
+        this.spinAngle = spinAngle; //angle in radians
         this.v = new Vector2D(0,0);
         this.a = new Vector2D(0,0);
         this.acceleration = 0;

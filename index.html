@@ -5,28 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spin Glass</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     
-    <!-- UI Overlay for stats or controls -->
     <div id="ui-layer">
-        <h1>Relaxation Time of Magnetic Nanoparticles</h1>
+        <h1 id="mainTitle">Tempo de Relaxação de Nanopartículas Magnéticas</h1>
         <br>
-        <h3>Simulation Status</h3>
-        <p>Particles: <span id="particlesLabel">0</span></p>
-        <p>q: <span id="qLabel">0</span></p>
-        <p>Tcutoff:<span id="TcutoffLabel">0</span></p>
-        <p>tau:<span id="tauLabel">0</span></p>
-        <p>Tstar: <span id="TstarLabel">0</span></p>
-        <p>Equation being used:</p>
-        <button id="btnNewElectron">Add Electron</button>
+        
+        <button id="langToggleBtn" class="toggle-btn" style="background-color: #e2874a;">Idioma: Português</button>
+
+        <select name="Estados" id="estadosSelect" >
+            <option id="opt0" value="0" selected>Selecione um Estado</option>
+            <option id="opt1" value="5">q = 1.3 (Super-difusivo)</option>
+            <option id="opt2" value="10">q = 1.1 (Super-difusivo)</option>
+            <option id="opt3" value="15">q = 1.0 (Néel-Brown)</option>
+            <option id="opt4" value="20">q = 0.9 (Sub-difusivo)</option>
+            <option id="opt5" value="25">q = 0.8 (Sub-difusivo)</option>
+            <option id="opt6" value="30">q = 0.7 (Vidro de Spin)</option>            
+        </select>
+        
+        <h3 id="eqHeading">Equação utilizada:</h3>
+        <div id="equationDisplay" class="equation-box">
+            <span id="eqPlaceholder">Selecione um Estado</span>
+        </div>
+        
+        <div class="stats-row">
+            <div class="stat-box">
+                <strong>
+                    q = <span id="qLabel">1.00</span>
+                </strong>
+            </div>
+            <div class="stat-box">
+                <strong>
+                    &tau; = <span id="tauLabel">0.00 s</span>
+                </strong>
+            </div>
+        </div>
+        <div class="stats-row">
+            <div class="stat-box">
+                <strong id="tLabel">
+                    T = 150 K
+                </strong>
+            </div>
+            <div class="stat-box">
+                <strong>
+                    T<sub>cut-off</sub> = <span id="tCutoffLabel">0.0 K</span>
+                </strong>
+            </div>
+        </div>
+
+        <div class="info-box accordion-container">
+            <button id="infoToggleBtn" class="accordion-btn">
+                <span id="infoToggleText">Info da Simulação</span>
+                <span id="accordionIcon" style="font-weight: bold; font-size: 18px;">+</span>
+            </button>
+            
+            <div id="infoBox" class="accordion-content">
+                <div style="padding: 15px; border-top: 1px solid #ddd;">
+                    <h4 id="infoTitle">Sobre a Simulação</h4>
+                    <ul>
+                        <li id="info1"><strong>Partículas:</strong> Nanopartículas magnéticas (MNPs) com interações dipolares.</li>
+                        <li id="info2"><strong>Setas:</strong> Momentos de dipolo magnético.</li>
+                        <li id="info3"><strong>Vibração:</strong> Flutuações térmicas estocásticas \(h(t)\).</li>
+                        <li id="info4"><strong>Giros de 180&deg;:</strong> Relaxação de Néel espontânea sobre a barreira de energia \(\Delta V\).</li>
+                    </ul>
+                    
+                    <h4 id="glossaryTitle" style="margin-top: 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; text-align: center;">Variáveis</h4>
+                    <ul>
+                        <li id="info5"><strong>\(q\):</strong> Índice entrópico (força de interação).</li>
+                        <li id="info6"><strong>\(\tau\):</strong> Tempo de relaxação (espera média entre os giros).</li>
+                        <li id="info7"><strong>\(T\):</strong> Temperatura ambiente (fixada em 150 K).</li>
+                        <li id="info8"><strong>\(T_{cut-off}\):</strong> Limite de temperatura crítica.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <canvas id="simCanvas"></canvas>
 
-    <script src="script.js"></script>
-    <script src="class/ball.js"></script>
     <script src="class/vector2D.js"></script>
+    <script src="class/ball.js"></script>
     <script src="class/arrow.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
